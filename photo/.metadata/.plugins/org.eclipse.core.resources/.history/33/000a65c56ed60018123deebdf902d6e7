@@ -1,0 +1,23 @@
+package hackerankcodenations;
+
+import java.util.Scanner;
+
+public class Test {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int y=sc.nextInt();
+		if(y<=1918)
+		{
+			
+		}
+		else
+		{
+			int feb=28;
+			if(y%4==0 && y%400==0)
+			{
+				feb=29;
+			}
+		}
+	}
+
+}

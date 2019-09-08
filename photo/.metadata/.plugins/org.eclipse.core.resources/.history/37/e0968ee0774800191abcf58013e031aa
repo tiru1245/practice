@@ -1,0 +1,82 @@
+import java.util.Scanner;
+
+public class Substring {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0) {
+		String A=sc.next();
+		
+		String B=sc.next();
+		int a[]=new int[256];
+		int b[]=new int[256];
+		
+	     String stringa=A.toLowerCase();
+	     String stringb=B.toLowerCase();
+		for(int i=0;i<stringa.length();i++) {
+			int is=stringa.charAt(i);
+				a[is]++;
+			
+		}
+		for(int i=0;i<stringb.length();i++) {
+			int is=stringb.charAt(i);
+			b[is]++;
+		}
+		boolean isvalid=false;
+		for(int i=0;i<b.length;i++) {
+			if(b[i]<=a[i]) {
+				isvalid=true;
+			}
+			else {
+				isvalid=false;
+				break;
+			}
+		}
+		if(isvalid) {
+			int length=1000;
+			int index1=0;
+			int index2=0;
+			for(int l=0;l<stringa.length();l++) {
+				String as="";
+				for(int i=l;i<stringa.length();i++) {
+					int j=i+1;
+					
+					String al=stringa.substring(i,j);
+					
+					int a1[]=new int[256];
+					al=as+al;
+					for(int k=0;k<al.length();k++) {
+						int is=al.charAt(k);
+						a1[is]++;
+					}
+					boolean isvalid1=false;
+					for(int k=0;k<b.length;k++) {
+						if(b[k]<=a1[k]) {
+							isvalid1=true;
+						}
+						else {
+							isvalid1=false;
+							break;
+							
+						}
+					}
+					if(isvalid1) {
+						if(length>al.length()) {
+							length=al.length();
+							index1=l;
+							index2=j;
+						}
+					}
+					
+					as=al;
+				
+				}
+				
+			}
+			System.out.println(A.substring(index1, index2+1));
+		}
+		else
+		System.out.println(-1);
+	}
+	}
+}

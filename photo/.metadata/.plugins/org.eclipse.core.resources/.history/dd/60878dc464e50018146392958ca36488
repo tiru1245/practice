@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class FormingMagicSquare {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int firstrow=0;
+		int secondrow=0;
+		int thirdrow=0;
+		int firstcol=0;
+		int secondcol=0;
+		int thirdcol=0;
+		int a[][]=new int[3][3];
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<3;j++) {
+				if(i==0) {
+					a[i][j]=sc.nextInt();
+					firstrow+=a[i][j];
+				}else if(i==1) {
+					a[i][j]=sc.nextInt();
+					secondrow+=a[i][j];
+				}
+				else {
+					a[i][j]=sc.nextInt();
+					thirdrow+=a[i][j];
+				}
+				
+			}
+		}
+		for(int i=0;i<3;i++) {
+			for(int j=0;j<3;j++) {
+				firstcol+=a[j][i];
+			}
+			
+			}
+		int firstrwd= firstrow>15 ? firstrow-15: 15-firstrow;
+		int secondrwd= secondrow>15 ? secondrow-15: 15-secondrow;
+		int thirdrwd= thirdrow>15 ? thirdrow-15: 15-thirdrow;
+		System.out.println(firstrwd+secondrwd+thirdrwd);
+
+      		
+		
+	}
+
+}

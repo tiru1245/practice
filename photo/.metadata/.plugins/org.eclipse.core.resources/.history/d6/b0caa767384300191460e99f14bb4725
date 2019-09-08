@@ -1,0 +1,81 @@
+import java.util.Scanner;
+
+public class Substring {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0) {
+		String A=sc.next();
+		
+		String B=sc.next();
+		int mi=Integer.MAX_VALUE;
+		int max=Integer.MIN_VALUE;
+		int a[]=new int[26];
+		int b[]=new int[26];
+		
+	     String stringa=A.toLowerCase();
+	     String stringb=B.toLowerCase();
+		for(int i=0;i<stringa.length();i++) {
+			int is=stringa.charAt(i);
+				a[is-97]++;
+			
+		}
+		for(int i=0;i<stringb.length();i++) {
+			int is=stringb.charAt(i);
+			b[is-97]++;
+		}
+		boolean isvalid=false;
+		for(int i=0;i<b.length;i++) {
+			if(b[i]<=a[i]) {
+				isvalid=true;
+			}
+			else {
+				isvalid=false;
+				break;
+			}
+		}
+		if(isvalid) {
+			int length=Integer.MAX_VALUE;
+			for(int l=0;l<stringa.length();l++) {
+				String as="";
+				for(int i=l;i<stringa.length();i++) {
+					int j=i+1;
+					
+					String al=stringa.substring(i,j);
+					
+					int a1[]=new int[26];
+					al=as+al;
+					System.out.println(al);
+					for(int k=0;k<al.length();k++) {
+						int is=al.charAt(k);
+						a1[is-97]++;
+					}
+					boolean isvalid1=false;
+					for(int k=0;k<b.length;k++) {
+						if(b[k]<=a1[k]) {
+							isvalid=true;
+						}
+						else {
+							isvalid=false;
+							break;
+							
+						}
+					}
+					if(isvalid1) {
+						if(length>al.length()) {
+							length=al.length();
+						}
+					}
+					
+					as=al;
+				
+				}
+				
+			}
+			System.out.println(length);
+		}
+		else
+		System.out.println(-1);
+	}
+	}
+}

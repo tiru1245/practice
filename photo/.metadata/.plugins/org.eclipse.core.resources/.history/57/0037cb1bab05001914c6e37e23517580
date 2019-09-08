@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class PickingCoins {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0) {
+			long n=sc.nextLong();
+			long k=sc.nextLong();
+			int i=1;
+			boolean flag=false;
+			while(true) {
+				long power=powerOfK(k,i);
+				n=n-power;
+				if(n<power) {
+					flag=false;
+					break;
+				}
+				else {
+					flag=true;
+				}
+				if(flag) {
+					n=n-power;
+					if(n<power) {
+						flag=true;
+						break;
+					}
+					else {
+						flag=false;
+					}
+				}
+				
+			}
+			if(flag) {
+				System.out.println("Alice");
+			}
+			else {
+				System.out.println("Bob");
+			}
+					}
+	}
+
+	private static long powerOfK(long k, int i) {
+		if(i==1) {
+			return k;
+		}
+		if(i%2==0) {
+			return powerOfK(k,i/2)*powerOfK(k,i/2);
+		}
+		else {
+			return powerOfK(k,i%2)*powerOfK(k,i-1);
+
+		}
+		
+	}
+
+}

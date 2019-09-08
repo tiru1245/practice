@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+ 
+ 
+public class TestClass {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter wr = new PrintWriter(System.out);
+        int T = Integer.parseInt(br.readLine().trim());
+        for(int t_i=0; t_i<T; t_i++)
+        {
+            String A = br.readLine();
+            String B = br.readLine();
+ 
+            String out_ = FindSubString(A, B);
+            System.out.println(out_);
+            System.out.println("");
+         }
+ 
+         wr.close();
+         br.close();
+    }
+    static String FindSubString(String A, String B){
+    int n1 = A.length();
+	int n2 = B.length();
+	
+	if (n1 < n2)
+	{
+		return "-1";
+	}
+	int[] hash_B= new int[256];
+	int[] hash_A= new int[256];
+	
+	for (int i = 0; i < n2; i++)
+		hash_B[B.charAt(i)]++;
+	
+	int start = 0, start_index = -1, min_len = Integer.MAX_VALUE;
+	int count = 0; // count of characters
+	for (int j = 0; j < n1 ; j++)
+	{
+		hash_A[A.charAt(j)]++;
+		
+		if (hash_B[A[j]] != 0 &&
+			hash_A[A[j]] <= hash_B[A[j]] )
+			count++;
+		if (count == n2)
+		{
+			
+			while ( hash_A[A[start]] > hash_B[A[start]]
+				|| hash_B[A[start]] == 0)
+			{
+				if (hash_A[A[start]] > hash_B[A[start]])
+					hash_A[A[start]]--;
+				start++;
+			}
+			int len_window = j - start + 1;
+			if (min_len > len_window)
+			{
+				min_len = len_window;
+				start_index = start;
+			}
+		}
+	}
+	if (start_index == -1)
+	{
+	return "-1";
+	}
+	return A.substr(start_index, min_len);
+    
+    }
+}

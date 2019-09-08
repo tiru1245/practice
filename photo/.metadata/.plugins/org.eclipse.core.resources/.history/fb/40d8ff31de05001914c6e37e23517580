@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class SuperiorString {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int t=sc.nextInt();
+		while(t-->0) {
+			int n=sc.nextInt();
+			String s=sc.next();
+			int a[][]=new int[n][26];
+			int c[]=new int[26];
+			c[s.charAt(0)-97]++;
+			a[0]=c;
+			for(int i=1;i<n;i++) {
+				int b[]=a[i-1];
+				for(int j=0;j<=i;j++) {
+					
+					b[s.charAt(j)-97]++;
+				}
+				a[i]=b;
+				
+			}
+			for(int i=0;i<n;i++) {
+				
+				for(int j=0;j<26;j++) {
+					System.out.println("length:"+i+" j:"+a[i][j]);
+				}
+			}
+		}
+	}
+
+}
